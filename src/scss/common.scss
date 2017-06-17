@@ -1,0 +1,29 @@
+@import "./../../node_modules/styleguide.ryanair.com/src/rooms-brand";
+
+body {
+  background: $bg-grey;
+}
+
+.grey-border {
+  border: solid 1px $lines-grey;
+}
+
+.grey-border-bottom {
+  border-bottom: solid 1px $lines-grey;
+}
+
+.grey-border-top {
+  border-top: solid 1px $lines-grey;
+}
+
+.bar {
+  height: 65px;
+}
+
+.main {
+  min-height: calc(100vh - 125px);
+}
+
+.overflow-h {
+  overflow: hidden;
+}

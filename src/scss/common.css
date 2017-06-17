@@ -1,0 +1,20 @@
+body {
+  background: #f4f6f7; }
+
+.grey-border {
+  border: solid 1px #bbc3cf; }
+
+.grey-border-bottom {
+  border-bottom: solid 1px #bbc3cf; }
+
+.grey-border-top {
+  border-top: solid 1px #bbc3cf; }
+
+.bar {
+  height: 65px; }
+
+.main {
+  min-height: calc(100vh - 125px); }
+
+.overflow-h {
+  overflow: hidden; }
