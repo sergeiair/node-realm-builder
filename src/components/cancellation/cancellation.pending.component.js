@@ -44,6 +44,11 @@ class CancellationPending extends Component {
       .toLocaleString("en-us", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   }
 
+  openMap() {
+    let params = `${this.cancellationData.hotel.location.latitude}, ${this.cancellationData.hotel.location.longitude}`;
+    window.open(`https://www.google.com/maps/search/?api=1&query=${params}`);
+  }
+
   render() {
     return (
       <div>
@@ -52,7 +57,8 @@ class CancellationPending extends Component {
             you are about to cancel your reservation at the ${this.cancellationData.hotel.name}.
             Please review the following details and confirm the cancellation with the button below.`}/>
         <Section title={`Reservation details`}>
-          <ImagesBar images={[this.cancellationData.hotel.mapUrl, this.cancellationData.hotel.mainImageUrl]}/>
+          <ImagesBar images={[this.cancellationData.hotel.mapUrl, this.cancellationData.hotel.mainImageUrl]}
+            openMap={this.openMap.bind(this)}/>
           <div className="py-4">
             <SectionRow title="Hotel name">
               <small className="font-weight-bold">{this.cancellationData.hotel.name}</small>
