@@ -1,0 +1,25 @@
+@import './colors.scss';
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.bordered {
+  border: 1px solid $grey-border;
+}
+
+.rounded {
+  border-radius: 5px;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

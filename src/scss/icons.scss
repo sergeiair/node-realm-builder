@@ -1,0 +1,18 @@
+
+.icon {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@mixin icon-size($size: 24px) {
+  width: $size;
+  height: $size;
+}
+
+$icon-size-variants: 175, 115, 80, 70, 50, 40, 35, 32, 30, 28, 26, 24, 22, 21, 20, 18, 16, 15, 14, 12, 10;
+@each $icon-size-variant in $icon-size-variants {
+  .icon-#{$icon-size-variant} {
+    @include icon-size(#{$icon-size-variant}px);
+  }
+}

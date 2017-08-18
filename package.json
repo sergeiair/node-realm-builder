@@ -1,24 +1,45 @@
 {
-  "name": "fraas-pages",
+  "name": "realm-node-manager",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
-    "bootstrap": "4.0.0-alpha.6",
+    "bootstrap": "v4.0.0-beta",
+    "jsonschema": "^1.1.1",
+    "koa": "^2.3.0",
+    "koa-body": "^2.3.0",
+    "koa-convert": "1.2.0",
+    "koa-router": "^7.2.1",
+    "koa2-cors": "^2.0.3",
+    "mobx": "^3.2.1",
+    "mobx-logger": "^0.6.0",
+    "mobx-react": "^4.2.2",
     "node-sass-chokidar": "^0.0.2",
     "npm-run-all": "^4.0.2",
+    "path": "^0.12.7",
     "prop-types": "^15.5.10",
+    "ramda": "^0.24.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-notifications": "^1.4.3",
+    "react-router": "^4.1.2",
+    "react-router-dom": "^4.1.2",
     "react-scripts": "^1.0.7",
-    "styleguide.ryanair.com": "http://repo.ryanair.com:8081/artifactory/api/npm/ryanair-npm/styleguide.ryanair.com/-/styleguide.ryanair.com-0.0.42.tgz"
+    "realm": "^1.10.0",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "autoprefixer": "7.1.0",
+    "babel-cli": "^6.24.1",
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.0.0",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^3.0.0",
     "babel-runtime": "6.23.0",
     "case-sensitive-paths-webpack-plugin": "1.1.4",
@@ -54,11 +75,10 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start-js": "node scripts/start.js",
-    "start": "npm-run-all -p watch-css start-js",
-    "start:dev2": "REACT_APP_ENV=dev2 && npm-run-all -p watch-css start-js",
-    "build:prod": "REACT_APP_ENV=prod && npm run build-css && node scripts/build.js",
-    "build:dev2": "REACT_APP_ENV=dev2 && npm run build-css && node scripts/build.js",
+    "start-react": "node scripts/start.js",
+    "start-node": "node server/init.js",
+    "start": "npm-run-all -p watch-css start-react start-node",
+    "build": "npm run build-css && node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
@@ -95,6 +115,5 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "homepage": "."
+  }
 }

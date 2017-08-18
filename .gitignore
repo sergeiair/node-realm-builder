@@ -27,3 +27,6 @@ yarn-error.log*
 .c9/
 *.launch
 .settings/
+
+# realms
+/server/app/_realms

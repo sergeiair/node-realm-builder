@@ -1,0 +1,8 @@
+$font-size-base: .8rem;
+$input-padding-x: .4rem;
+
+.form-control {
+  padding-left: $input-padding-x;
+  padding-right: $input-padding-x;
+  padding-bottom: 0;
+}
