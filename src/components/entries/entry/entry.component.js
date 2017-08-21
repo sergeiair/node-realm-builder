@@ -16,6 +16,7 @@ class EntryComponent extends PureComponent {
       .map((prop, i) => (
         <EntryFieldComponent
           key={i}
+          index={i}
           value={data[prop.name]}
           type={prop.type}
           name={prop.name}

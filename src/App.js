@@ -22,6 +22,9 @@ class App extends Component {
               <li className="nav-item">
                 <a className="nav-link" href="/">New schema</a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/collections">Saved schemes</a>
+              </li>
             </ul>
           </div>
         </nav>

@@ -42,12 +42,9 @@ class SchemesComponent extends PureComponent {
   _onProceed() {
     const { schemesStore } = this.props;
 
-    RealmsService.initFile(schemesStore.mainSchema)
-      .then(() => {
-        SchemesStorageService.save(schemesStore.mainSchema);
-
-        this._onRealmCreate();
-      });
+    RealmsService
+      .initFile(schemesStore.mainSchema)
+        .then(this._onRealmCreate.bind(this));
   }
 
   _onRealmCreate() {
@@ -94,6 +91,14 @@ class SchemesComponent extends PureComponent {
         </div>
       </div>
     );
+  }
+
+  componentWillUnmount() {
+    const { schemesStore } = this.props;
+
+    if (schemesStore.mainSchema.properties[0].name) {
+      SchemesStorageService.save(schemesStore.mainSchema);
+    }
   }
 }
 

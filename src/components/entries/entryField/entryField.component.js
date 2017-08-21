@@ -8,49 +8,55 @@ class EntryFieldComponent extends PureComponent {
   }
 
   getField(type, id, value = null) {
-    const { entryFieldChange } = this.props;
+    const { entryFieldChange, index } = this.props;
 
     switch (type) {
       case 'int':
-        return (<input
-          id={id}
-          type="number"
-          className="d-block w-100 form-control"
-          pattern="^[0-9]+$"
-          defaultValue={value}
-          onChange={ev => {
-            entryFieldChange({
-              target: {
-                value: parseInt(ev.target.value, 10),
-              }
-            });
-          }}/>
+        return (
+          <input
+            id={`field_${id}_${index}`}
+            data-id={id}
+            type="number"
+            className="d-block w-100 form-control"
+            pattern="^[0-9]+$"
+            defaultValue={value}
+            onChange={ev => {
+              entryFieldChange({
+                target: {
+                  value: parseInt(ev.target.value, 10),
+                }
+              });
+            }}/>
         );
       case 'string':
-        return (<textarea
-          id={id}
-          className="d-block w-100 form-control"
-          defaultValue={value}
-          onChange={entryFieldChange}/>
+        return (
+          <textarea
+            id={`field_${id}_${index}`}
+            data-id={id}
+            className="d-block w-100 form-control"
+            defaultValue={value}
+            onChange={entryFieldChange}/>
         );
       default:
-        return (<input
-          id={id}
-          className="d-block w-100 form-control"
-          defaultValue={value}
-          onChange={entryFieldChange}/>
+        return (
+          <input
+            id={`field_${id}_${index}`}
+            data-id={id}
+            className="d-block w-100 form-control"
+            defaultValue={value}
+            onChange={entryFieldChange}/>
         );
     }
   }
 
   render() {
-    const { name, type, value } = this.props;
+    const { name, type, value, index } = this.props;
     const id = name.split(' ')[0];
 
     return (
       <div>
         <div className="form-group mb-3">
-          <label htmlFor={`field_${id}`}>
+          <label htmlFor={`field_${id}_${index}`}>
             Field: <strong>{name}</strong>
           </label>
           { this.getField(type, id, value) }
@@ -64,6 +70,7 @@ EntryFieldComponent.PropTypes = {
   entryFieldChange: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
   value: PropTypes.any,
 };
 

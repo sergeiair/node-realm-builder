@@ -13,7 +13,12 @@ export default class SchemesStorageService {
   }
 
   static fetch() {
-    Object.keys(this.storage)
-      .map(key => JSON.parse(this.storage[key]));
+    return Object.keys(this.storage)
+      .map(key => {
+        return {
+          data: JSON.parse(this.storage[key]),
+          key: parseInt(key, 10),
+        };
+      });
   }
 }
