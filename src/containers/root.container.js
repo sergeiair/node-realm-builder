@@ -10,7 +10,7 @@ import EntriesStore from './../stores/entries.store';
 import SchemesComponent from '../components/schemes/schemes.component';
 import CollectionsComponent from '../components/collections/collections.component';
 
-import EntriesComponent from '../components/entries/entries.component';
+import EntriesWrapperComponent from '../components/entries/entries.wrapper.component';
 
 class RootContainer extends PureComponent {
   constructor(props) {
@@ -30,7 +30,7 @@ class RootContainer extends PureComponent {
             <Route
               path="/entries"
               exact={true}
-              render={(routeProps) => React.createElement(EntriesComponent,
+              render={(routeProps) => React.createElement(EntriesWrapperComponent,
                 {...routeProps, ...this.props})}/>
             <Route
               path="/collections"

@@ -27,7 +27,7 @@ class EntriesStore {
   }
 
   @action entryUpdate(value, propName, index) {
-    runInAction("entry updating", () => {
+    runInAction("entryItem updating", () => {
       this.entries = this.entries.map((entry, i) => {
         if (i === index) {
           entry[propName] = value;
@@ -38,7 +38,7 @@ class EntriesStore {
   }
 
   @action addEmptyEntry(properties) {
-    runInAction("adding new entry", () => {
+    runInAction("adding new entryItem", () => {
       this.entries = [
         ...this.entries,
         this.propertiesToObject(properties, this.entries.length),
@@ -47,7 +47,7 @@ class EntriesStore {
   }
 
   @action dropEntry(index) {
-    runInAction("adding new entry", () => {
+    runInAction("adding new entryItem", () => {
       this.entries = this.entries.filter((el, i) => i !== index);
     });
   }

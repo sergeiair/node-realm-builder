@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import EntryComponent from './../entry/entry.component';
+import EntryItemComponent from '../entryItem/entryItem.component';
 import IncDecComponent from '../../common/incDec.component';
 
 class EntriesFormsComponent extends Component {
@@ -23,7 +23,7 @@ class EntriesFormsComponent extends Component {
             <div key={entry.uid}
               className="p-3 mb-4 bordered rounded">
 
-                <EntryComponent
+                <EntryItemComponent
                   data={entry}
                   schema={mainSchema}
                   entryFieldChange={(val, name) => {

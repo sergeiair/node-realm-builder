@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import EntryFieldComponent from './../entryField/entryField.component';
 
-class EntryComponent extends PureComponent {
+class EntryItemComponent extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -35,10 +35,10 @@ class EntryComponent extends PureComponent {
   }
 }
 
-EntryComponent.PropTypes = {
+EntryItemComponent.PropTypes = {
   schema: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
   entryFieldChange: PropTypes.func.isRequired,
 };
 
-export default EntryComponent;
+export default EntryItemComponent;

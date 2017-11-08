@@ -13,7 +13,7 @@ import EntriesInitialView from './entriesInitialView/entriesInitialView.componen
 import EntriesProceedControl from './entriesProceedControl/entriesProceedControl.component';
 
 @observer
-class EntriesComponent extends PureComponent {
+class EntriesWrapperComponent extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -81,14 +81,14 @@ class EntriesComponent extends PureComponent {
             {
               entriesStore.entries.length
                 ? <EntriesForms
-                    mainSchema={schemesStore.mainSchema}
-                    entries={entriesStore.entries}
-                    removeEntry={this._removeEntry.bind(this)}
-                    addNewEntry={this._addNewEntry.bind(this)}
-                    entryUpdate={this._updateEntry.bind(this)}/>
+                  mainSchema={schemesStore.mainSchema}
+                  entries={entriesStore.entries}
+                  removeEntry={this._removeEntry.bind(this)}
+                  addNewEntry={this._addNewEntry.bind(this)}
+                  entryUpdate={this._updateEntry.bind(this)}/>
                 : <EntriesInitialView
-                    fillEntriesStore={this._fillEntriesStore.bind(this)}
-                    addNewEntry={this._addNewEntry.bind(this)}/>
+                  fillEntriesStore={this._fillEntriesStore.bind(this)}
+                  addNewEntry={this._addNewEntry.bind(this)}/>
             }
           </div>
           <div className="flex-1">
@@ -102,10 +102,10 @@ class EntriesComponent extends PureComponent {
   }
 }
 
-EntriesComponent.PropTypes = {
+EntriesWrapperComponent.PropTypes = {
   history: PropTypes.object.isRequired,
   schemesStore: SchemesStore.isRequired,
   entriesStore: EntriesStore.isRequired,
 };
 
-export default EntriesComponent;
+export default EntriesWrapperComponent;

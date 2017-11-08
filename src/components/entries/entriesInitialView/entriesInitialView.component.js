@@ -5,6 +5,7 @@ import IncDecComponent from '../../common/incDec.component';
 import EntriesJsonParser from '../entriesJsonParser/entriesJsonParser.component';
 
 class EntriesInitialView extends PureComponent {
+
 	render() {
     const {addNewEntry, fillEntriesStore} = this.props;
 
