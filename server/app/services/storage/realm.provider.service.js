@@ -8,7 +8,7 @@ export default class RealmProviderService {
   }
 
   resolveProvider(schema) {
-    Realm.defaultPath = `server/app/_realms/${uuid.v1()}`;
+    Realm.defaultPath = `server/app/_realms/${schema.name || uuid.v1()}`;
 
     return new Promise((resolve, reject) => {
       try {
@@ -32,6 +32,7 @@ export default class RealmProviderService {
       primaryKey: rawSchema.primaryKey,
       properties: rawSchema.properties.reduce((initial, current) => {
         initial[current.name] = current;
+
         return initial;
       }, {}),
     };

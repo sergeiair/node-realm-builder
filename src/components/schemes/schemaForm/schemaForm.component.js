@@ -75,7 +75,11 @@ class SchemaFormComponent extends PureComponent {
           onChange={this._onPKeyChange.bind(this)}>
             {
               propertiesFiltered.map((el, index) => {
-                return <option key={index} value={el.name}>{el.name}</option>;
+                return (
+                  <option key={index + el.name}
+                    value={el.name}>{el.name}
+                  </option>
+                );
               })
             }
         </select>

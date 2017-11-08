@@ -1,11 +1,16 @@
 import { observable, action, computed, runInAction } from 'mobx';
+const uuidv1 = require('uuid/v1');
 
 class EntriesStore {
 
   @observable _entries = [];
 
   @computed get entries() {
-    return this._entries || [];
+    return (this._entries || []).map(el => {
+      el.uid = uuidv1();
+
+      return el;
+    });
   }
 
   set entries(data) {

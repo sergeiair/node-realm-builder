@@ -4351,6 +4351,9 @@ button.list-group-item-dark {
 .cursor-pointer {
   cursor: pointer; }
 
+.invalid {
+  border: 1px solid #d32232; }
+
 .icon {
   position: relative;
   display: inline-block;

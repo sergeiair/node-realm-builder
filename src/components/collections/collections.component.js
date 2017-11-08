@@ -27,23 +27,25 @@ class CollectionsComponent extends PureComponent {
     return (
       <div className="list-group">
         {
-          collection.map((item, index) => {
-            return (
-              <span key={index}
-                className="list-group-item list-group-item-action"
-                onClick={this._onListClick.bind(this, index)}>
-                  <span className="badge badge-pill badge-info">
-                    {
-                      new Date(item.key).toLocaleString()
-                    }
-                  </span>
-                  <h4 className="w-100 text-center">
-                    {
-                      item.data.name.toUpperCase()
-                    }
-                  </h4>
-              </span>
-            );
+          collection
+            .filter(item => item.key)
+            .map((item, index) => {
+              return (
+                <span key={item.data.name + index}
+                  className="list-group-item list-group-item-action"
+                  onClick={this._onListClick.bind(this, index)}>
+                    <span className="badge badge-pill badge-info">
+                      {
+                        new Date(item.key).toLocaleString()
+                      }
+                    </span>
+                    <h4 className="w-100 text-center">
+                      {
+                        item.data.name.toUpperCase()
+                      }
+                    </h4>
+                </span>
+              );
           })
         }
       </div>

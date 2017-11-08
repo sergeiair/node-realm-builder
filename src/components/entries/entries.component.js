@@ -8,8 +8,9 @@ import RealmsService from './../../services/realms.service';
 import SchemesStore from './../../stores/schemes.store';
 import EntriesStore from './../../stores/entries.store';
 
-import EntryComponent from './entry/entry.component';
-import IncDecComponent from './../common/incDec.component';
+import EntriesForms from './entriesForms/entriesForms.component';
+import EntriesInitialView from './entriesInitialView/entriesInitialView.component';
+import EntriesProceedControl from './entriesProceedControl/entriesProceedControl.component';
 
 @observer
 class EntriesComponent extends PureComponent {
@@ -30,10 +31,22 @@ class EntriesComponent extends PureComponent {
     entriesStore.addEmptyEntry(schemesStore.mainSchema.properties);
   }
 
+  _fillEntriesStore(data) {
+    const { entriesStore } = this.props;
+
+    entriesStore.entries = data;
+  }
+
   _removeEntry(i) {
     const { entriesStore } = this.props;
 
     entriesStore.dropEntry(i);
+  }
+
+  _updateEntry(value, name, index) {
+    const { entriesStore } = this.props;
+
+    entriesStore.entryUpdate(value, name, index);
   }
 
   _onProceed() {
@@ -43,9 +56,7 @@ class EntriesComponent extends PureComponent {
       .then((res) => {
         history.push('/');
       })
-      .catch(err => {
-        console.error(err);
-      });
+      .catch(console.error);
   }
 
   get entriesGuard() {
@@ -58,73 +69,32 @@ class EntriesComponent extends PureComponent {
     );
   }
 
-  get entriesForms() {
-    const { schemesStore, entriesStore } = this.props;
-
-    return entriesStore.entries.map((entry, i) => (
-      <div key={i} className="p-3 mb-4 bordered rounded">
-        <EntryComponent
-          data={entry}
-          schema={schemesStore.mainSchema}
-          entryFieldChange={(val, name) => {
-            entriesStore.entryUpdate(val, name, i);
-          }}/>
-        <IncDecComponent
-          disabledMin={!i}
-          incClick={this._addNewEntry.bind(this)}
-          decClick={this._removeEntry.bind(this, i)}/>
-      </div>
-    ));
-  }
-
-  get emptyEntriesControls() {
-    return (
-      <div className="d-flex flex-row align-items-center justify-content-center">
-        <h3 className="pr-5">Add new entry by clicking +</h3>
-
-        <IncDecComponent
-          disabledMin={true}
-          incClick={this._addNewEntry.bind(this)}/>
-      </div>
-    );
-  }
-
-  get proceedControl() {
-    const { schemesStore } = this.props;
-
-    return (
-      <button
-        title="Finish schemes and create realm file"
-        className="my-4 btn btn-link cursor-pointer"
-        disabled={!schemesStore.isSchemaValid}
-        onClick={this._onProceed.bind(this)}>
-        <img className="icon icon-80"
-          src="/assets/svg/dot-right-arrow.svg" />
-      </button>
-    );
-  }
-
   render() {
-    const { entriesStore } = this.props;
+    const { entriesStore, schemesStore } = this.props;
 
     return (
       <div className="container">
         {this.entriesGuard}
+
         <div className="d-flex flex-row">
           <div className="flex-2">
             {
               entriesStore.entries.length
-                ? this.entriesForms
-                : this.emptyEntriesControls
+                ? <EntriesForms
+                    mainSchema={schemesStore.mainSchema}
+                    entries={entriesStore.entries}
+                    removeEntry={this._removeEntry.bind(this)}
+                    addNewEntry={this._addNewEntry.bind(this)}
+                    entryUpdate={this._updateEntry.bind(this)}/>
+                : <EntriesInitialView
+                    fillEntriesStore={this._fillEntriesStore.bind(this)}
+                    addNewEntry={this._addNewEntry.bind(this)}/>
             }
           </div>
           <div className="flex-1">
-            <div className="fixed">
-              { entriesStore.entries.length
-                  ? this.proceedControl
-                  : null
-              }
-            </div>
+            <EntriesProceedControl
+              hidden={!entriesStore.entries.length}
+              proceed={this._onProceed.bind(this)}/>
           </div>
         </div>
       </div>

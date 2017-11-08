@@ -57,9 +57,9 @@ class EntryFieldComponent extends PureComponent {
       <div>
         <div className="form-group mb-3">
           <label htmlFor={`field_${id}_${index}`}>
-            Field: <strong>{name}</strong>
+            Field: <strong>{name} (type: {type})</strong>
           </label>
-          { this.getField(type, id, value) }
+          {this.getField(type, id, value)}
         </div>
       </div>
     );

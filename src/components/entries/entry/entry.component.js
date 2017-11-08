@@ -15,7 +15,7 @@ class EntryComponent extends PureComponent {
     return schema.properties
       .map((prop, i) => (
         <EntryFieldComponent
-          key={i}
+          key={prop.name + i}
           index={i}
           value={data[prop.name]}
           type={prop.type}
@@ -28,7 +28,9 @@ class EntryComponent extends PureComponent {
 
   render() {
     return (
-      <div className="my-2">{this.fields}</div>
+      <div className="my-2">
+        {this.fields}
+      </div>
     );
   }
 }
